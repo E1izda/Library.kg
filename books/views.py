@@ -1,7 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.utils import timezone
 import random
+from . import models
+
+#Listview
+def book_list_view(request):
+    if request.method == 'GET':
+        books = models.Books.objects.all()
+        context = {
+            'books': books, 
+        }
+        return render(request, template_name='books/books_list.html', context=context)
+    
+#Detailview
+def book_detail_view(request, id):
+    if request.method == 'GET':
+        book_id = get_object_or_404(models.Books, id=id)
+        context = {
+            'book_id': book_id,
+        }
+        return render(request, template_name='books/book_detail.html', context=context)
 
 def current_time(request):
     now = timezone.localtime(timezone.now())
