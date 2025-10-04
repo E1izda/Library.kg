@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.utils import timezone
 import random
-from . import models
+from . import models 
 
 #Listview
 def book_list_view(request):
