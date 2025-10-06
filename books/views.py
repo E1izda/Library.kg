@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 import random
 from . import models 
+from django.db.models import Avg
 
 #Listview
 def book_list_view(request):
@@ -17,8 +18,12 @@ def book_list_view(request):
 def book_detail_view(request, id):
     if request.method == 'GET':
         book_id = get_object_or_404(models.Books, id=id)
+        average_score = book_id.reviews.aggregate(Avg('mark'))['mark__avg']
+        reviews = book_id.reviews.all()
         context = {
             'book_id': book_id,
+            'average_score': average_score,
+            'reviews': reviews,
         }
         return render(request, template_name='books/book_detail.html', context=context)
 
