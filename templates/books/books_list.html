@@ -3,10 +3,9 @@
   {% for i in books %}
   <li>
     <h2>{{ i.title }}</h2>
-    <img src="{{ i.image.url }}" alt="" width="400" height="350">
+    <img src="{{ i.image.url }}" alt="{{ i.title }}" width="250" height="350">
     <p>{{ i.created_at }}</p>
     <a href="/book_detail/{{i.id}}/">Подробнее</a>
   </li>
   {% endfor %}
 </ol>
-ё
