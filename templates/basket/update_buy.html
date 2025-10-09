@@ -1,0 +1,20 @@
+{% load static %}
+{% include 'basket/header.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Изменить заказ</title>
+</head>
+<body>
+    <h1>Изменить заказ</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Обновить</button>
+    </form>
+
+    <br>
+    <a href="{% url 'order_list' %}">Назад к списку заказов</a>
+</body>
+{% endfor %}
