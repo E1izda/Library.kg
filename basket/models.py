@@ -1,4 +1,5 @@
 from django.db import models
+from books.models import Books
 
 class Basket(models.Model):
     name = models.CharField(verbose_name='Название корзины')
@@ -11,7 +12,7 @@ class Basket(models.Model):
 
 class BuyedBooks(models.Model):
     buyer_name = models.CharField(verbose_name='Имя покупателя', max_length=100, null=True)
-    book = models.ForeignKey('books.Books', on_delete=models.CASCADE)
+    book = models.ForeignKey(Books, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name='Количество', default=1)
     buying_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(verbose_name='Статус заказа', default='В обработке')
