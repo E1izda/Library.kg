@@ -1,0 +1,7 @@
+<h1>Вы уверенны что хотите удалить эту анкету?</h1>
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Да, удалить</button>
+</form>
+    <a href="{% url 'buy_list' %}">Отмена</a>
+
