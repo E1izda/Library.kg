@@ -1,0 +1,20 @@
+    <h2>{{ movie_id.title }}</h2>
+    <p>{{ movie_id.description }}</p>
+    <p>{{ movie_id.review_text }}</p>
+    <p>{{ movie_id.genre }}</p>
+
+    <p>{{ movie_id.created_at }}</p>
+
+    <h3>средняя оценка отзывов: {{ average_score|default:"Нет оценок" }}</h3>
+
+      <ul>
+    {% for i in movie_id.comments.all %}
+
+      <li>
+        <p>{{ i.mark }}</p>
+        <p>{{ i.review_text }}</p>
+        <p>{{ i.created_at }}</p>
+
+      </li>
+    {% endfor %}
+  </ul>

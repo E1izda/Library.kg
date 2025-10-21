@@ -1,0 +1,47 @@
+{% load static %}
+{% include '../header.html' %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+<h1>Наслаждайтесь</h1>
+
+<h1>Фильмы</h1>
+<a href="{% url 'cineboard:create_movie' %}">Добавить фильм</a>
+
+<ol>
+  {% for i in movie_lst %}
+  <li>
+    <h2>{{ i.title }}</h2>
+    <p>{{ i.created_at }}</p>
+    <p>{{ i.description }}</p>
+
+    Теги:
+    {% for tag in i.tags.all %}
+      {{ tag.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+      без тегов
+    {% endfor %}
+
+    <br>
+
+    <h3>Комменты</h3>
+    <ol>
+      {% for comment in i.rating.all %}
+      <li>
+        <strong>{{ comment.stars }}✴️</strong><br>
+        <p>{{ comment.text }}</p>
+      </li>
+      {% empty %}
+      <li>Комментариев пока нет</li>
+      {% endfor %}
+    </ol>
+
+   <a href="{% url 'cineboard:update' i.id %}">Изменить фильм</a>
+<a href="{% url 'cineboard:delete' i.id %}">Удалить фильм</a>
+    <a href="/book_detail/{{i.id}}/">Подробнее</a>
+
+  </li>
+  {% endfor %}
+</ol>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
